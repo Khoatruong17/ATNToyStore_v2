@@ -2,10 +2,11 @@ var express = require('express');
 var router = express.Router();
 var ToyModel = require('../models/ToyModel');
 var BrandModel = require('../models/BrandModel');
+var CountryModel = require('../models/CountryModel');
 
 router.get('/', async (req, res) => {
   try {
-    var brands = await BrandModel.find({});
+    var brands = await BrandModel.find({}).populate('country');;
     res.render('admin/brand/index', { brands });
   } catch (error) {
     console.error(error);
@@ -13,9 +14,20 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/add', (req, res) => {
-  res.render('admin/brand/add');
+// router.get('/add', (req, res) => {
+//   res.render('admin/brand/add');
+// })
+
+router.get('/add', async (req, res) => {
+  try {
+    var countries = await CountryModel.find({});
+    res.render('admin/brand/add', { title: 'Admin - Add Toy', countries });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
 })
+
 
 router.post('/add', async (req, res) => {
   var brand = req.body;
@@ -32,11 +44,12 @@ router.get('/edit/:id', async (req, res) => {
   var id = req.params.id;
   try {
     var brand = await BrandModel.findById(id);
+    var countries = await CountryModel.find({});
   } catch (error) {
     console.error(error);
     res.status(500).send('Internal Server Error');
   }
-  res.render('admin/brand/edit', {brand}); 
+  res.render('admin/brand/edit', {brand, countries}); 
 });
 
 router.post('/edit/:id', async (req, res) => {

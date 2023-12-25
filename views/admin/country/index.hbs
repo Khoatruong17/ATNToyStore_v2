@@ -1,0 +1,22 @@
+<div class="container mt-4">
+    <a class="btn btn-link" href="/toy">List of Toys</a>
+    <a class="btn btn-link" href="/brand">List of Brands</a>
+
+    <h2>List of Countries</h2>
+    <a class="btn btn-primary mb-2" href="/country/add">Add new Countries</a>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Name of Countries</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each countries }}
+            <tr>
+                <td>{{ name }}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>

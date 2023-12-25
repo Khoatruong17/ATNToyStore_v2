@@ -1,0 +1,15 @@
+<div class="container mt-4">
+   <a class="btn btn-secondary mb-2" href="/country" onclick="return confirm('You want to exit without saving?')">Back to
+      List</a>
+
+   <form class="mb-3" action="/country/add" method="post">
+      <h1 class="mb-4">Add New Country</h1>
+
+      <div class="mb-3">
+         <label for="name" class="form-label">Country name:</label>
+         <input type="text" class="form-control" name="name" id="name" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Add</button>
+   </form>
+</div>

@@ -16,8 +16,12 @@
       </div>
 
       <div class="mb-3">
-         <label for="country" class="form-label">Brand country:</label>
-         <input type="text" class="form-control" name="country" id="country" value="{{ brand.country }}" required>
+         <label for="country" class="form-label">Brand Country:</label>
+         <select class="form-select" name="country" id="country">
+            {{#each countries }}
+            <option value="{{ _id }}"> {{ name }}</option>
+            {{/each}}
+         </select>
       </div>
 
       <div class="mb-3">

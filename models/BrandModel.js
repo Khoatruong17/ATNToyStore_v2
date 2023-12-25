@@ -7,7 +7,10 @@ var BrandSchema = mongoose.Schema(
             minlength: [3, 'brand name must be at least 3 characters'],
             maxlength: 20
         },
-        country: String,
+        country: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'countries'
+        },
         image: String,
         since: Number
     });
